@@ -60,6 +60,9 @@ const Login = () => {
 
         console.log(response)
 
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", JSON.stringify(response.user));
+
         setFormData({
             email: "",
             password: ""
