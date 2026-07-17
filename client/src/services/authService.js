@@ -8,6 +8,8 @@ const register = async (userData) => {
 
 const login = async (userData) => {
     const response = await api.post("/auth/login", userData)
+
+    return response.data
 }
 
 export {register, login}

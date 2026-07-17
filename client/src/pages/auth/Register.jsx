@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react'
 import { register } from '../../services/authService'
 
@@ -76,13 +75,18 @@ const Register = () => {
         if(Object.keys(newError).length >0){
             return
         }
+        const { name, email, password } = formData;
 
-        // console.log("form submitted successfully")
-        // console.log(formData)
-
-        const response = await register(formData)
+        const response = await register({ name, email, password })
 
         console.log(response)
+
+        setFormData({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+});
     }
 
 
@@ -127,7 +131,7 @@ const Register = () => {
                     onChange={handleChange}
                     className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
 
-                    {error.name && <p>{error.name}</p>}
+                    {error.name && <p className='text-red-500 text-sm mt-1'>{error.name}</p>}
                 </div>
 
                  <div>
@@ -140,7 +144,7 @@ const Register = () => {
                     onChange={handleChange}
                     className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
 
-                    {error.email && <p>{error.email}</p>}
+                    {error.email && <p className='text-red-500 text-sm mt-1'>{error.email}</p>}
                 </div>
 
                  <div>
@@ -153,7 +157,7 @@ const Register = () => {
                     onChange={handleChange}
                     className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
 
-                    {error.password && <p>{error.password}</p>}
+                    {error.password && <p className='text-red-500 text-sm mt-1'>{error.password}</p>}
                 </div>
 
                  <div>
@@ -165,7 +169,7 @@ const Register = () => {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
-                    {error.confirmPassword && <p>{error.confirmPassword}</p>}
+                    {error.confirmPassword && <p className='text-red-500 text-sm mt-1'>{error.confirmPassword}</p>}
                 </div>
 
                 <button type='submit'
