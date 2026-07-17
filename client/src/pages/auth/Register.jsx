@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { register } from '../../services/authService'
 
 const Register = () => {
 
@@ -37,7 +38,7 @@ const Register = () => {
     const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault()
 
          const newError = {}
@@ -76,8 +77,12 @@ const Register = () => {
             return
         }
 
-        console.log("form submitted successfully")
-        console.log(formData)
+        // console.log("form submitted successfully")
+        // console.log(formData)
+
+        const response = await register(formData)
+
+        console.log(response)
     }
 
 
