@@ -1,4 +1,5 @@
 const User = require("../models/User")
+const authService = require("../services/authService")
 
 const home  = (req,res)=>{
     res.json({
@@ -8,41 +9,30 @@ const home  = (req,res)=>{
 }
 
 const registerUser= async (req,res)=>{
-    const {name, email, password } = req.body;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
-    
-    if(!name.trim() || !email.trim() || !password.trim()){
-        return res.status(400).json({
-            success:false,
-            message:"All fields are required"
-        });
-    }
+   try {
+    const result = await authService.register(req.body)
 
-    if(!emailRegex.test(email)){
-        return res.status(400).json({
-            success:false,
-            message:"Please enter a valid email address."
-        })
-    }
+    return res.status(201).json(result)
 
-    if(!passwordRegex.test(password)){
-        return res.status(400).json({
-            success:false,
-            message:"Password must be at least 8 characters and include uppercase, lowercase, number, and special character."
-        })
-    }
-    const user = await User.create({
-        name,
-        email,
-        password
-    })
-
-    res.status(201).json({
-        success:true,
-        message:"User data received Successfully"
-    })
+   } catch (error) {
+     return res.status(500).json({
+        success:false,
+        message:error.message
+     })
+   }
 }
 
-module.exports = {home, registerUser}
+const loginUser = async(req,res)=>{
+    try {
+        const result = await authService.login(req.body)
+        return res.status(200).json(result)
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:error.message
+        })
+    }
+
+}
+
+module.exports = {home, registerUser, loginUser}
