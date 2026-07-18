@@ -6,8 +6,8 @@ const {home, registerUser, loginUser}  = require("../controllers/authController"
 
 
 router.get("/",home)
-router.post("/api/auth/register", registerUser)
-router.post("/api/auth/login", loginUser)
+router.post("/register", registerUser)
+router.post("/login", loginUser)
 
 module.exports = router;
 

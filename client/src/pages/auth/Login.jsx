@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {login} from "../../services/authService"
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -78,18 +78,20 @@ const Login = () => {
 
 
         {/* left section  */}
-        <div className='w-1/2 bg-gradient-to-br bg-blue-600 via-indigo-600 to-purple-700 flex items-center justify-center'>
-            <div className='text-center text-white px-10'>
-                <h1 className='text-5xl font-bold mb-6'>
-                    Taskflow
+
+        <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 items-center justify-center p-12">
+             <div className="max-w-md text-white">
+                <h1 className="text-5xl font-bold mb-6">
+                    TaskFlow
                 </h1>
 
-                <p className='text-xl leading-8'>
-                     Organize your tasks, boost your productivity, and manage your work efficiently.
+                <p className="text-lg leading-8 text-blue-100">
+                    Organize your tasks, track your progress, and stay productive with TaskFlow. Manage projects, prioritize work, and collaborate efficiently—all from one modern dashboard.
                 </p>
             </div>
-
         </div>
+
+        
         {/* right section  */}
 
         <div className='w-1/2 flex justify-center items-center'>
@@ -137,7 +139,7 @@ const Login = () => {
 
                 <p className='text-center text-gray-600'>
                      don't have an account?{" "}
-                     <span className='text-blue-600 font-medium cursor-pointer hover:underline'>Register</span></p>
+                     <Link to="/register" className='text-blue-600 font-medium cursor-pointer hover:underline'>Register</Link></p>
             </form>
 
         </div>

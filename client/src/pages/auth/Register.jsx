@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { register } from '../../services/authService'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
 
@@ -180,7 +181,7 @@ const Register = () => {
 
                 <p className='text-center text-gray-600'>
                      Already have an account?{" "}
-                     <span className='text-blue-600 font-medium cursor-pointer hover:underline'>Login</span></p>
+                     <Link to="/login" className='text-blue-600 font-medium cursor-pointer hover:underline'>Login</Link></p>
             </form>
 
         </div>

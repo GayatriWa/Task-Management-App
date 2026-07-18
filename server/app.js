@@ -8,11 +8,13 @@ app.use(cors({
 }))
 
 const authRoutes = require("./routes/authRoutes")
+const taskRoutes = require("./routes/taskRoutes")
 
 // Middleware to convert data in json form which come from frontend
 app.use(express.json())
 
 // Routes 
-app.use(authRoutes)
+app.use("/api/auth",authRoutes)
+app.use("/api/tasks",taskRoutes)
 
 module.exports = app
