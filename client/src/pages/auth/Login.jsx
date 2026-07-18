@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {login} from "../../services/authService"
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -12,6 +13,8 @@ const Login = () => {
     email:"",
     password:""
   })
+
+  const navigate = useNavigate()
 
   const handleChange = (e) =>{
         const {name,value} = e.target;
@@ -62,6 +65,8 @@ const Login = () => {
 
         localStorage.setItem("token", response.token);
         localStorage.setItem("user", JSON.stringify(response.user));
+
+        navigate("/dashboard")
 
         setFormData({
             email: "",
