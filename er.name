@@ -1,0 +1,17 @@
+* [33m3e83dbd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m feat: implement complete task CRUD functionality
+* [33mc331dfe[m feat: implement task creation and dashboard integration
+* [33mc16de5e[m feat: display tasks on dashboard using backend API
+* [33m44fafbb[m feat: implement complete task CRUD APIs with JWT authentication
+* [33m14c93b6[m feat: implement logout functionality
+* [33me87757b[m feat: add protected routes for authenticated users
+* [33mc37a973[m feat: store JWT token and user data after login
+* [33mfde1cc7[m feat: implement frontend login with backend authentication
+* [33maf374cc[m feat: integrate frontend registration with backend API
+* [33m290fe03[m feat: add JWT authentication middleware
+* [33m17c4176[m feat: implement JWT authentication and refactor auth module
+*   [33m6c5f81a[m Merge branch 'main' of github.com:GayatriWa/Task-Management-App
+[32m|[m[33m\[m  
+[32m|[m * [33mcf3ca61[m Create README.md for Task Management App
+* [33m|[m [33m57092cb[m Add MongoDB connection, user model, and register API validation
+[33m|[m[33m/[m  
+* [33m173bcf9[m first commit: MERN Task Management App with register page UI and validation
