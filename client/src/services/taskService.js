@@ -29,4 +29,30 @@ const getAllTask = async () => {
     return response.data
 }
 
-export {getAllTask, createTask}
+const deleteTask = async (taskId) =>{
+    const token  = localStorage.getItem("token")
+    const response = await axios.delete(`http://localhost:5000/api/tasks/${taskId}`,
+        {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+    )
+
+    return response.data
+}
+
+const updateTask = async (taskId, taskData) => {
+    const token  = localStorage.getItem("token")
+    const response = await axios.put(`http://localhost:5000/api/tasks/${taskId}`, taskData,
+        {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+    )
+
+    return response.data
+}
+
+export {getAllTask, createTask, deleteTask, updateTask}
