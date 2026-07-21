@@ -99,7 +99,7 @@ return (
     </div>
 
     {/* White Card */}
-    <div className="bg-white w-full max-w-420px rounded-3xl shadow-2xl p-6">
+    <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6">
       {/* Your existing form goes here */}
 
       <h2 className="text-2xl font-bold text-center text-gray-800">

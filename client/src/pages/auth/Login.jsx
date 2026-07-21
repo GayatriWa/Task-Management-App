@@ -83,7 +83,7 @@ const Login = () => {
     </div>
 
     {/* White Card */}
-    <div className="bg-white w-full max-w-420px rounded-3xl shadow-2xl p-6">
+    <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6">
       {/* Your existing form goes here */}
 
       <h2 className="text-2xl font-bold text-center text-gray-800">
@@ -144,19 +144,6 @@ const Login = () => {
             >
              Login
             </button>
-
-            {/* <div className="flex items-center my-4">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="px-3 text-gray-400 text-sm">OR</span>
-              <div className="flex-1 h-px bg-gray-300"></div>
-            </div> */}
-
-            {/* <button
-              type="button"
-              className="w-full py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition"
-            >
-              Continue with Google
-            </button> */}
 
             <p className="text-center text-gray-500">
              don't have an account?{" "}
