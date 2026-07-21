@@ -56,7 +56,7 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
 
       {/* Description */}
 
-      <p className="text-gray-500 text-sm mt-2 line-clamp-2 min-h-[40px]">
+      <p className="text-gray-500 text-sm mt-2 line-clamp-2 min-h-40px">
         {task.description || "No description"}
       </p>
 

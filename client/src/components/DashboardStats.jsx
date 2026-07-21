@@ -65,7 +65,7 @@ const DashboardStats = ({ tasks, onAddTask }) => {
 
         <button
           onClick={onAddTask}
-          className="self-start sm:self-auto flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 px-5 py-3 text-white font-semibold shadow-lg hover:scale-105 transition"
+          className="self-start sm:self-auto flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-indigo-500 px-5 py-3 text-white font-semibold shadow-lg hover:scale-105 transition"
         >
           <FiPlus className="text-xl" />
           Add Task

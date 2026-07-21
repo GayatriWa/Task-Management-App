@@ -83,7 +83,7 @@ const Login = () => {
     </div>
 
     {/* White Card */}
-    <div className="bg-white w-full max-w-[420px] rounded-3xl shadow-2xl p-6">
+    <div className="bg-white w-full max-w-420px rounded-3xl shadow-2xl p-6">
       {/* Your existing form goes here */}
 
       <h2 className="text-2xl font-bold text-center text-gray-800">
@@ -140,7 +140,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:scale-[1.02] transition"
+              className="w-full py-2.5 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:scale-[1.02] transition"
             >
              Login
             </button>

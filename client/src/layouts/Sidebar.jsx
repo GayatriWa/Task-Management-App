@@ -55,7 +55,7 @@ const Sidebar = ({onLogout}) => {
                 `flex items-center gap-4 px-5 py-4 rounded-2xl text-lg transition-all duration-300
                 ${
                   isActive
-                    ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
+                    ? "bg-linear-to-r from-blue-500 to-indigo-500 text-white shadow-md"
                     : "text-gray-600 hover:bg-gray-100"
                 }`
               }
