@@ -1,156 +1,112 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { FiX } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
-import { getAllTask, createTask, deleteTask, updateTask} from '../services/taskService';
-import { toast } from "react-toastify";
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
-import SearchFilter from '../components/SearchFilter';
 import DashboardStats from '../components/DashboardStats';
+import {filterTasks} from '../utils/taskFilters'
+import useTasks from '../hooks/useTasks';
+import DashboardHeader from "../components/DashboardHeader";
+import Sidebar from '../layouts/Sidebar';
+import TaskSectionHeader from "../components/TaskSectionHeader";
 
 const Dashboard = () => {
-  const navigate = useNavigate()
 
-  const [tasks, setTasks] =  useState([])
+    const [searchTerm, setSearchTerm] = useState("")
+    const [statusFilter,setStatusFilter] = useState("All")
+    const [priorityFilter, setPriorityFilter] = useState("All")
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [formData, setFormData] = useState({
-    title:"",
-    description:"",
-    status:"Pending",
-    priority:"medium"
-  })
+    const {
+        tasks,
+        formData,
+        loading,
+        editTaskId,
+        handleChange,
+        handleSubmit,
+        handleDelete,
+        handleEdit,
+        resetForm
+      } = useTasks(); 
+  
+  const filteredTasks = filterTasks(
+  tasks,
+  searchTerm,
+  statusFilter,
+  priorityFilter
+);
+    const navigate = useNavigate()
 
-  const [editTaskId, setEditTaskId] =  useState(null)
-
-  const [loading, setLoading] = useState(false)
-
-  const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter,setStatusFilter] = useState("All")
-
-  const fetchTask = async () =>{
-    try {
-      const response = await getAllTask()
-      setTasks(response.tasks);
-
-    } catch (error) {
-       console.error(error)
-    }
-  }
-  useEffect(() => {
-    fetchTask()
-  },[])
+  const user = JSON.parse(localStorage.getItem("user") || "null")
 
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("user")
     navigate("/login")
-  }
-  const handleChange = (e) =>{
-    const {name, value} = e.target;
-
-    setFormData({
-      ...formData,
-      [name]:value
-    })
+};
+    const handleEditTask = (task) => {
+  handleEdit(task);
+  setIsModalOpen(true);
 
   }
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
-    try {
-      setLoading(true)
-      
-      if(editTaskId){
-        await updateTask(editTaskId, formData) 
-        toast.success("Task updated successfully!");
-       }
-       else{
-       await createTask(formData)
-       toast.success("Task created successfully!");
-       }
-      await fetchTask();
-      setFormData({
-          title:"",
-          description:"",
-          status:"Pending",
-          priority:"medium"
-    })
-      setEditTaskId(null)  
-      
-    } catch (error) {
-      console.error(error)
-      toast.error("Failed to save task!");
-    }finally{
-      setLoading(false)
-    }
+
+  const handleFormSubmit = async (e) => {
+  const success = await handleSubmit(e);
+
+  if (success) {
+    setIsModalOpen(false);
   }
+};
 
-  const handleDelete = async (taskId) =>{
-    try {
-      const isConfirmed = window.confirm("Are you sure you want to delete this task ?")
-      if(!isConfirmed) {
-        return
-      }
-      const response = await deleteTask(taskId)
-      toast.success("Task deleted successfully!");
-
-      await fetchTask();
-    } catch (error) {
-      console.error(error)
-      toast.error("Failed to delete task!");
-    }
-  }
-
-  const handleEdit = async (task) =>{
-    try {
-      setEditTaskId(task._id);
-
-        setFormData({
-          title: task.title,
-          description: task.description,
-          status: task.status,
-          priority: task.priority
-        });
-    
-   } catch (error) {
-       console.error(error)
-    }
-  }
-
-     const filteredTasks = tasks.filter((task) => {
-      const matchesSearch = task.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-
-  const matchesStatus =
-    statusFilter === "All" || task.status === statusFilter;
-
-  return matchesSearch && matchesStatus;
-});
+const handleCloseModal = () => {
+  resetForm();
+  setIsModalOpen(false);
+};
+  
   return (
-    <div>
+     <div
+        className="h-screen flex overflow-hidden dashboard-bg">
 
-      <button onClick={handleLogout}
-      className='bg-red-500 text-white px-4 py-2 rounded' >
-        Logout
-      </button>
+      <Sidebar onLogout={handleLogout} />
 
-      <DashboardStats tasks={tasks}/>
-      <SearchFilter
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter} />
+     <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
 
-        <TaskForm  handleSubmit={handleSubmit}
-          formData={formData}
-          handleChange={handleChange}
-          loading={loading}
-          editTaskId={editTaskId}/>
+       <DashboardHeader
+          user={user}
+        /> 
+
+      <DashboardStats tasks={tasks}
+      onAddTask={() => setIsModalOpen(true)}/>
+
+        <TaskSectionHeader />
 
         <TaskList
           tasks={filteredTasks}
-          onEdit={handleEdit}
+          onEdit={handleEditTask}
           onDelete={handleDelete}/>
 
+          {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className="relative w-[95%] sm:w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white shadow-2xl">
+
+      <button
+        onClick={handleCloseModal}
+        className="absolute right-4 top-4 text-2xl text-gray-500 hover:text-gray-700"
+      ><FiX />
+      </button>
+
+      <TaskForm
+        handleSubmit={handleFormSubmit}
+        formData={formData}
+        handleChange={handleChange}
+        loading={loading}
+        editTaskId={editTaskId}
+      />
+
+          </div>
+        </div>
+      )}
+        </div>
      </div>
   )
 }

@@ -74,78 +74,103 @@ const Login = () => {
         });
     }
   return (
-    <div className='min-h-screen flex'>
 
-
-        {/* left section  */}
-
-        <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 items-center justify-center p-12">
-             <div className="max-w-md text-white">
-                <h1 className="text-5xl font-bold mb-6">
-                    TaskFlow
-                </h1>
-
-                <p className="text-lg leading-8 text-blue-100">
-                    Organize your tasks, track your progress, and stay productive with TaskFlow. Manage projects, prioritize work, and collaborate efficiently—all from one modern dashboard.
-                </p>
-            </div>
-        </div>
-
-        
-        {/* right section  */}
-
-        <div className='w-1/2 flex justify-center items-center'>
-
-            <form className='w-full max-w-md space-y-6'
-            onSubmit={handleSubmit}>
-
-                <h1 className='text-4xl font-bold text-gray-800 mb-2'>Welcome Back</h1>
-
-                <p className='text-gray-500 mb-8'>
-                    Login to continue.
-                </p>
-
-                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>Email </label>
-
-                    <input type="email"
-                    placeholder='Enter your Email' 
-                    name='email'
-                    value={formData.email}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
-
-                    {error.email && <p className='text-red-500 text-sm mt-1'>{error.email}</p>}
-                </div>
-
-                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>Password </label>
-
-                    <input type="password"
-                    placeholder='Enter a password' 
-                    name='password'
-                    value={formData.password}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
-
-                    {error.password && <p className='text-red-500 text-sm mt-1'>{error.password}</p>}
-                </div>
-
-                <button type='submit'
-                className='w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-medium '>
-                    Login
-                </button>
-
-
-                <p className='text-center text-gray-600'>
-                     don't have an account?{" "}
-                     <Link to="/register" className='text-blue-600 font-medium cursor-pointer hover:underline'>Register</Link></p>
-            </form>
-
-        </div>
-
-
+    <div
+    className="relative min-h-screen w-full overflow-hidden flex items-center justify-center login-bg">
+    {/* Logo */}
+    <div className="absolute top-18 left-1/2 -translate-x-1/2">
+      <h1 className="text-3xl font-bold text-white">TaskFlow</h1>
     </div>
+
+    {/* White Card */}
+    <div className="bg-white w-full max-w-[420px] rounded-3xl shadow-2xl p-6">
+      {/* Your existing form goes here */}
+
+      <h2 className="text-2xl font-bold text-center text-gray-800">
+            Welcome Back
+           </h2>
+
+           <p className="text-center text-gray-500 mt-1 mb-5">
+             Login to continue.
+          </p>
+
+           <form onSubmit={handleSubmit} className="space-y-4">
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Email
+              </label>
+
+              <input
+                type="email"
+                placeholder="Enter your Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
+
+              {error.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.email}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
+
+              <input
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
+
+              {error.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.password}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:scale-[1.02] transition"
+            >
+             Login
+            </button>
+
+            {/* <div className="flex items-center my-4">
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <span className="px-3 text-gray-400 text-sm">OR</span>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div> */}
+
+            {/* <button
+              type="button"
+              className="w-full py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition"
+            >
+              Continue with Google
+            </button> */}
+
+            <p className="text-center text-gray-500">
+             don't have an account?{" "}
+              <Link
+                to="/register"
+                className="ml-1 font-semibold text-blue-600 hover:underline"
+              >
+                Register
+              </Link>
+            </p>
+
+          </form>
+    </div>
+  </div>
   )
 }
 

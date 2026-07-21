@@ -89,106 +89,147 @@ const Register = () => {
     confirmPassword: ""
 });
     }
+return (
+  <div
+    className="relative min-h-screen w-full overflow-hidden flex items-center justify-center login-bg"
+  >
+    {/* Logo */}
+    <div className="absolute top-6 left-1/2 -translate-x-1/2">
+      <h1 className="text-3xl font-bold text-white">TaskFlow</h1>
+    </div>
 
+    {/* White Card */}
+    <div className="bg-white w-full max-w-[420px] rounded-3xl shadow-2xl p-6">
+      {/* Your existing form goes here */}
 
-  return (
-    <div className='min-h-screen flex'>
+      <h2 className="text-2xl font-bold text-center text-gray-800">
+            Create Account
+           </h2>
 
+           <p className="text-center text-gray-500 mt-1 mb-5">
+             Sign up to continue
+          </p>
 
-        {/* left section  */}
-        <div className='w-1/2 bg-gradient-to-br bg-blue-600 via-indigo-600 to-purple-700 flex items-center justify-center'>
-            <div className='text-center text-white px-10'>
-                <h1 className='text-5xl font-bold mb-6'>
-                    Taskflow
-                </h1>
+           <form onSubmit={handleSubmit} className="space-y-4">
 
-                <p className='text-xl leading-8'>
-                     Organize your tasks, boost your productivity, and manage your work efficiently.
+           <div>
+               <label className="block text-sm font-medium text-gray-700 mb-2">
+                 Full Name
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter your Full Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
+
+              {error.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.name}
                 </p>
+              )}
             </div>
 
-        </div>
-        {/* right section  */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Email
+              </label>
 
-        <div className='w-1/2 flex justify-center items-center'>
+              <input
+                type="email"
+                placeholder="Enter your Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
 
-            <form className='w-full max-w-md space-y-6'
-            onSubmit={handleSubmit}>
-
-                <h1 className='text-4xl font-bold text-gray-800 mb-2'>Create Account</h1>
-
-                <p className='text-gray-500 mb-8'>
-                    Create your account to continue.
+              {error.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.email}
                 </p>
+              )}
+            </div>
 
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
 
-                <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>Full Name </label>
+              <input
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
 
-                    <input type="text"
-                    placeholder='Enter your Full Name' 
-                    name='name'
-                    value={formData.name}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
+              {error.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.password}
+                </p>
+              )}
+            </div>
 
-                    {error.name && <p className='text-red-500 text-sm mt-1'>{error.name}</p>}
-                </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Password
+              </label>
 
-                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>Email </label>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
 
-                    <input type="email"
-                    placeholder='Enter your Email' 
-                    name='email'
-                    value={formData.email}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
+              {error.confirmPassword && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.confirmPassword}
+                </p>
+              )}
+            </div>
 
-                    {error.email && <p className='text-red-500 text-sm mt-1'>{error.email}</p>}
-                </div>
+            <button
+              type="submit"
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:scale-[1.02] transition"
+            >
+              Register
+            </button>
 
-                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>Password </label>
+            {/* <div className="flex items-center my-4">
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <span className="px-3 text-gray-400 text-sm">OR</span>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div> */}
 
-                    <input type="password"
-                    placeholder='Enter a password' 
-                    name='password'
-                    value={formData.password}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
+            {/* <button
+              type="button"
+              className="w-full py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition"
+            >
+              Continue with Google
+            </button> */}
 
-                    {error.password && <p className='text-red-500 text-sm mt-1'>{error.password}</p>}
-                </div>
+            <p className="text-center text-gray-500">
+              Already have an account?
+              <Link
+                to="/login"
+                className="ml-1 font-semibold text-blue-600 hover:underline"
+              >
+                Login
+              </Link>
+            </p>
 
-                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>Confirm Password </label>
-
-                    <input type="password"
-                    placeholder='Enter a confirm password' 
-                    name='confirmPassword'
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500'/>
-                    {error.confirmPassword && <p className='text-red-500 text-sm mt-1'>{error.confirmPassword}</p>}
-                </div>
-
-                <button type='submit'
-                className='w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-medium '>
-                    Register
-                </button>
-
-
-                <p className='text-center text-gray-600'>
-                     Already have an account?{" "}
-                     <Link to="/login" className='text-blue-600 font-medium cursor-pointer hover:underline'>Login</Link></p>
-            </form>
-
-        </div>
-
-
+          </form>
     </div>
-  )
+  </div>
+);
 }
 
 export default Register

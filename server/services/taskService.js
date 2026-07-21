@@ -7,6 +7,7 @@ const createTask = async ({title, description, status, priority, userId}) =>{
         title,
         description,
         status,
+        priority,
         user:userId
     })
 
