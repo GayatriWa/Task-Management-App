@@ -3,9 +3,23 @@ const cors = require("cors")
 
 const app = express()
 
-app.use(cors({
-    origin:"http://localhost:5173",
-}))
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-frontend.vercel.app" // Replace after deploying
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 const authRoutes = require("./routes/authRoutes")
 const taskRoutes = require("./routes/taskRoutes")
