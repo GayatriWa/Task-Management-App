@@ -5,7 +5,7 @@ const app = express()
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend.vercel.app" // Replace after deploying
+  "https://task-management-app-kohl-mu.vercel.app", // Replace after deploying
 ];
 
 app.use(
