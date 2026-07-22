@@ -10,9 +10,7 @@ const useTasks = () => {
         const [formData, setFormData] = useState(initialFormData)
         const [editTaskId, setEditTaskId] =  useState(null)
         const [loading, setLoading] = useState(false)
-        // const [searchTerm, setSearchTerm] = useState("")
-        // const [statusFilter,setStatusFilter] = useState("All")
-        // const [priorityFilter, setPriorityFilter] = useState("All")
+
 
         const fetchTasks = async () =>{
             try {

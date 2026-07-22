@@ -1,9 +1,10 @@
-import axios from "axios"
+import api from "../api/axios";
+
 
 const createTask = async (taskData) => {
     const token = localStorage.getItem("token");
 
-    const response = await axios.post("http://localhost:5000/api/tasks", taskData,
+    const response = await api.post("/tasks", taskData,
 
         {
             headers:{
@@ -18,7 +19,7 @@ const createTask = async (taskData) => {
 const getAllTask = async () => {
     const token  = localStorage.getItem("token")
 
-    const response = await axios.get("http://localhost:5000/api/tasks",
+    const response = await api.get("/tasks",
         {
             headers :{
                 Authorization: `Bearer ${token}`
@@ -31,7 +32,7 @@ const getAllTask = async () => {
 
 const deleteTask = async (taskId) =>{
     const token  = localStorage.getItem("token")
-    const response = await axios.delete(`http://localhost:5000/api/tasks/${taskId}`,
+    const response = await api.delete(`/tasks/${taskId}`,
         {
             headers:{
                 Authorization: `Bearer ${token}`
@@ -44,7 +45,7 @@ const deleteTask = async (taskId) =>{
 
 const updateTask = async (taskId, taskData) => {
     const token  = localStorage.getItem("token")
-    const response = await axios.put(`http://localhost:5000/api/tasks/${taskId}`, taskData,
+    const response = await api.put(`/tasks/${taskId}`, taskData,
         {
             headers:{
                 Authorization: `Bearer ${token}`
