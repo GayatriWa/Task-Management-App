@@ -5,7 +5,6 @@ import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import DashboardStats from '../components/DashboardStats';
 import {filterTasks} from '../utils/taskFilters'
-import SearchFilter from '../components/SearchFilter';
 import useTasks from '../hooks/useTasks';
 import DashboardHeader from "../components/DashboardHeader";
 import Sidebar from '../layouts/Sidebar';
@@ -68,20 +67,16 @@ const handleCloseModal = () => {
 
      <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
 
-       <DashboardHeader
+      <DashboardHeader
           user={user}
-        /> 
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
 
       <DashboardStats tasks={tasks}
       onAddTask={() => setIsModalOpen(true)}/>
 
         <TaskSectionHeader />
-
-
-        <SearchFilter
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        />
 
         <TaskList
           tasks={filteredTasks}

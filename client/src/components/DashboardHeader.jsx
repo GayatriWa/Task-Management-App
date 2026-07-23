@@ -1,6 +1,6 @@
 import { FiSearch, FiBell, FiChevronDown } from "react-icons/fi";
 
-const DashboardHeader = ({ user }) => {
+const DashboardHeader = ({ user, searchTerm, setSearchTerm, }) => {
   return (
     <header className="bg-white rounded-3xl shadow-md px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
 
@@ -14,6 +14,8 @@ const DashboardHeader = ({ user }) => {
         <input
           type="text"
           placeholder="Search tasks..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
          className="w-full py-3 pl-12 sm:pl-14 pr-4 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none transition"
         />
 
