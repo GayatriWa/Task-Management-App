@@ -3,7 +3,6 @@ const Task = require("../models/Task")
 // create task 
 const createTask = async ({title, description, status, priority,dueDate, userId}) =>{
     console.log("=== CREATE TASK CONTROLLER HIT ===");
-    console.log(req.body);
     const task = await Task.create({
         title,
         description,
