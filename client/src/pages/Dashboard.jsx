@@ -5,6 +5,7 @@ import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import DashboardStats from '../components/DashboardStats';
 import {filterTasks} from '../utils/taskFilters'
+import SearchFilter from '../components/SearchFilter';
 import useTasks from '../hooks/useTasks';
 import DashboardHeader from "../components/DashboardHeader";
 import Sidebar from '../layouts/Sidebar';
@@ -13,8 +14,6 @@ import TaskSectionHeader from "../components/TaskSectionHeader";
 const Dashboard = () => {
 
     const [searchTerm, setSearchTerm] = useState("")
-    const [statusFilter,setStatusFilter] = useState("All")
-    const [priorityFilter, setPriorityFilter] = useState("All")
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const {
@@ -32,8 +31,6 @@ const Dashboard = () => {
   const filteredTasks = filterTasks(
   tasks,
   searchTerm,
-  statusFilter,
-  priorityFilter
 );
     const navigate = useNavigate()
 
@@ -79,6 +76,12 @@ const handleCloseModal = () => {
       onAddTask={() => setIsModalOpen(true)}/>
 
         <TaskSectionHeader />
+
+
+        <SearchFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
 
         <TaskList
           tasks={filteredTasks}
