@@ -31,7 +31,11 @@ const Dashboard = () => {
   tasks,
   searchTerm,
 );
-    const navigate = useNavigate()
+
+console.log("Search:", searchTerm);
+console.log("Filtered Tasks:", filteredTasks);
+
+  const navigate = useNavigate()
 
   const user = JSON.parse(localStorage.getItem("user") || "null")
 
