@@ -47,6 +47,7 @@ const useTasks = () => {
                 toast.success("Task updated successfully!");
             }
             else{
+            console.log(formData);
             await createTask(formData)
             toast.success("Task created successfully!");
             }
@@ -88,7 +89,8 @@ const useTasks = () => {
                 title: task.title,
                 description: task.description,
                 status: task.status,
-                priority: task.priority
+                priority: task.priority,
+                dueDate: task.dueDate ? task.dueDate.split("T")[0] : ""
                 });
         }
 

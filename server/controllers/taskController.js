@@ -2,8 +2,9 @@ const taskService = require("../services/taskService")
 
 const createTask =  async (req,res)=>{
     try {
+        console.log(req.body);
 
-        const {title,description, status, priority} = req.body;
+        const {title,description, status, priority, dueDate} = req.body;
         const userId = req.user.userId;
 
         const result = await taskService.createTask({
@@ -11,6 +12,7 @@ const createTask =  async (req,res)=>{
             description,
             status,
             priority,
+            dueDate,
             userId
         })
 
@@ -68,9 +70,9 @@ const updateTask = async (req,res) => {
 
         const taskId = req.params.id;
         const userId = req.user.userId;
-        const {title, description, status, priority} = req.body;
+        const {title, description, status, priority, dueDate} = req.body;
 
-        const taskData = {title, description, status, priority}
+        const taskData = {title, description, status, priority, dueDate}
 
         const result = await taskService.updateTask(taskId, userId, taskData);
 

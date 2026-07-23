@@ -3,4 +3,5 @@ export const initialFormData = {
   description: "",
   status: "Pending",
   priority: "Medium",
+  dueDate: new Date().toISOString().split("T")[0],
 };

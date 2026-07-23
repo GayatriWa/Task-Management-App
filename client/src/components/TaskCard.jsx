@@ -70,7 +70,11 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
 
           <span>
             {task.dueDate
-              ? new Date(task.dueDate).toLocaleDateString()
+              ? new Date(task.dueDate).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })
               : "No Due Date"}
           </span>
 

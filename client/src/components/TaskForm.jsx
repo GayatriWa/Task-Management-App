@@ -65,6 +65,16 @@ const TaskForm = ({handleSubmit,handleChange,formData,loading,editTaskId}) => {
               </select>
 
               </div>
+              
+
+              <input
+                  type="date"
+                  name="dueDate"
+                  value={formData.dueDate}
+                  onChange={handleChange}
+                  min={new Date().toISOString().split("T")[0]}
+                  className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              />
 
         </div>
         

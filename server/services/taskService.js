@@ -1,13 +1,15 @@
 const Task = require("../models/Task")
 
 // create task 
-const createTask = async ({title, description, status, priority, userId}) =>{
-
+const createTask = async ({title, description, status, priority,dueDate, userId}) =>{
+    console.log("=== CREATE TASK CONTROLLER HIT ===");
+    console.log(req.body);
     const task = await Task.create({
         title,
         description,
         status,
         priority,
+        dueDate,
         user:userId
     })
 
@@ -64,6 +66,7 @@ const updateTask = async (taskId, userId, taskData) =>{
     task.description = taskData.description;
     task.status = taskData.status;
     task.priority = taskData.priority
+    task.dueDate = taskData.dueDate
 
     await task.save()
 
