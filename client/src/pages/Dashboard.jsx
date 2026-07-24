@@ -10,12 +10,15 @@ import DashboardHeader from "../components/DashboardHeader";
 import Sidebar from '../layouts/Sidebar';
 import TaskSectionHeader from "../components/TaskSectionHeader";
 import { sortTasks } from "../utils/sortTasks";
+import Pagination from "../components/Pagination";
 
 const Dashboard = () => {
 
     const [searchTerm, setSearchTerm] = useState("")
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sortBy, setSortBy] = useState("recent");
+    const [currentPage, setCurrentPage] = useState(1);
+    const tasksPerPage = 5;
 
     const {
         tasks,
@@ -34,6 +37,16 @@ const Dashboard = () => {
   searchTerm,
   );
   const sortedTasks = sortTasks(filteredTasks, sortBy);
+
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+
+  const currentTasks = sortedTasks.slice(
+    indexOfFirstTask,
+    indexOfLastTask
+  );
+
+  const totalPages = Math.ceil(sortedTasks.length / tasksPerPage);
 
   const navigate = useNavigate()
 
@@ -86,9 +99,15 @@ const handleCloseModal = () => {
             />
 
         <TaskList
-          tasks={sortedTasks}
+          tasks={currentTasks}
           onEdit={handleEditTask}
           onDelete={handleDelete}/>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
 
           {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
