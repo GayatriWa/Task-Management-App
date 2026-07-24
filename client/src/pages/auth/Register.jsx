@@ -80,14 +80,13 @@ const Register = () => {
 
         const response = await register({ name, email, password })
 
-        console.log(response)
 
         setFormData({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-});
+                name: "",
+                email: "",
+                password: "",
+                confirmPassword: ""
+            });
     }
 return (
   <div

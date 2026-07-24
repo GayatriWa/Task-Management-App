@@ -9,11 +9,13 @@ import useTasks from '../hooks/useTasks';
 import DashboardHeader from "../components/DashboardHeader";
 import Sidebar from '../layouts/Sidebar';
 import TaskSectionHeader from "../components/TaskSectionHeader";
+import { sortTasks } from "../utils/sortTasks";
 
 const Dashboard = () => {
 
     const [searchTerm, setSearchTerm] = useState("")
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [sortBy, setSortBy] = useState("recent");
 
     const {
         tasks,
@@ -30,10 +32,8 @@ const Dashboard = () => {
   const filteredTasks = filterTasks(
   tasks,
   searchTerm,
-);
-
-console.log("Search:", searchTerm);
-console.log("Filtered Tasks:", filteredTasks);
+  );
+  const sortedTasks = sortTasks(filteredTasks, sortBy);
 
   const navigate = useNavigate()
 
@@ -80,10 +80,13 @@ const handleCloseModal = () => {
       <DashboardStats tasks={tasks}
       onAddTask={() => setIsModalOpen(true)}/>
 
-        <TaskSectionHeader />
+        <TaskSectionHeader
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
 
         <TaskList
-          tasks={filteredTasks}
+          tasks={sortedTasks}
           onEdit={handleEditTask}
           onDelete={handleDelete}/>
 

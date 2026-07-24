@@ -51,8 +51,6 @@ const Login = () => {
         }else if(!passwordRegex.test(formData.password)){
             newError.password = "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.";
         }
-        
-
          setError(newError)
 
         if(Object.keys(newError).length >0){
@@ -60,8 +58,6 @@ const Login = () => {
         }
 
         const response = await login(formData)
-
-        console.log(response)
 
         localStorage.setItem("token", response.token);
         localStorage.setItem("user", JSON.stringify(response.user));
