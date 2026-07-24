@@ -18,7 +18,7 @@ const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sortBy, setSortBy] = useState("recent");
     const [currentPage, setCurrentPage] = useState(1);
-    const tasksPerPage = 5;
+    const tasksPerPage = 6;
 
     const {
         tasks,
@@ -75,6 +75,10 @@ const handleCloseModal = () => {
   resetForm();
   setIsModalOpen(false);
 };
+
+useEffect(() => {
+  setCurrentPage(1);
+}, [searchTerm, sortBy]);
   
   return (
      <div
@@ -103,11 +107,13 @@ const handleCloseModal = () => {
           onEdit={handleEditTask}
           onDelete={handleDelete}/>
 
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            setCurrentPage={setCurrentPage}
-          />
+          {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
 
           {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
